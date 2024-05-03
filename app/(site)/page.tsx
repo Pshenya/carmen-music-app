@@ -1,4 +1,5 @@
 import getSongs from "@/actions/getSongs";
+import getArtists from "@/actions/getArtists";
 import Header from "@/components/Header";
 import ListItem from "@/components/ListItem";
 import PageContent from "./components/PageContent";
@@ -7,6 +8,7 @@ export const revalidate = 0;
 
 export default async function Home() {
   const songs = await getSongs();
+  const artists = await getArtists();
 
   return (
     <div className="bg-neutral-900 rounded-lg w-full h-full overflow-hidden overflow-y-auto">
@@ -27,7 +29,7 @@ export default async function Home() {
           </h1>
         </div>
         <div>
-          <PageContent songs={songs}/>
+          <PageContent songs={songs} artists={artists}/>
         </div>
       </div>
     </div>

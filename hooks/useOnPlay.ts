@@ -7,7 +7,7 @@ const useOnPlay = (songs: Song[]) => {
   const subscribeModal = useSubscribeModal();
   const { user, subscription } = useUser();
 
-  const onPlay = (id: string) => {
+  const onPlay = async (id: string) => {
     console.log('Playing song with id:', id);
     if (!user) {
       return authModal.onOpen();
@@ -18,10 +18,6 @@ const useOnPlay = (songs: Song[]) => {
     | Forbid playing songs if user is not subscribed
     |--------------------------------------------------
     */
-
-    // if (!subscription) {
-    //   return subscribeModal.onOpen();
-    // }
 
     player.setId(id);
     player.setIds(songs.map((song) => song.id));

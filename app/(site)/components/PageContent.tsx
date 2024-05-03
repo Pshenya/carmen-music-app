@@ -2,13 +2,14 @@
 
 import SongItem from "@/components/SongItem";
 import { useOnPlay } from "@/hooks";
-import { Song } from "@/types";
+import { Artist, Song } from "@/types";
 
 interface PageContentProps {
   songs: Song[];
+  artists: Artist[];
 }
 
-const PageContent: React.FC<PageContentProps> = ({ songs }) => {
+const PageContent: React.FC<PageContentProps> = ({ songs, artists }) => {
   const onPlay = useOnPlay(songs);
 
   if (songs.length === 0) {

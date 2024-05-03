@@ -1,7 +1,7 @@
 "use client";
 
 import uniqid from 'uniqid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
@@ -10,7 +10,7 @@ import { useUser, useUploadModal } from '@/hooks';
 import Modal from './Modal'
 import Input from './Input';
 import Button from './Button';
-import { transliterateCyrillicToLatin } from '@/utils/utils';
+import { formatAudioDuration, getAudioDuration, sanitizeString, transliterateCyrillicToLatin } from '@/utils/utils';
 
 const UploadModal = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,10 +23,13 @@ const UploadModal = () => {
     defaultValues: {
       author: '',
       title: '',
+      album: '',
+      album_type: '',
       song: null,
       image: null
     }
   });
+
 
   const onChange = (open: boolean) => {
     if (!open) {
@@ -35,9 +38,24 @@ const UploadModal = () => {
     }
   }
 
+
+
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     try {
+
       setIsLoading(true);
+
+      // Making sure the title doesn't contain any problematic special characters and is in latin
+      const finalSongTitle = sanitizeString(transliterateCyrillicToLatin(values.title));
+      console.log("FINAL SONG TITLE: ", finalSongTitle);
+
+      /**
+      |--------------------------------------------------
+      | TODO: Handle featured artists and featured songs
+      |--------------------------------------------------
+      */
+      // const artists = values.author.split(',').map((artist: string) => artist.trim());
+      // console.log("ARTISTS: ", artists);
 
       const imageFile = values.image?.[0];
       const songFile = values.song?.[0];
@@ -46,6 +64,8 @@ const UploadModal = () => {
         toast.error('Missing fields');
         return;
       }
+
+      const songDuration = await getAudioDuration(songFile);
 
       const uniqueID = uniqid();
 
@@ -56,7 +76,7 @@ const UploadModal = () => {
       } = await supabaseClient
         .storage
         .from('songs')
-        .upload(`song-${transliterateCyrillicToLatin(values.title)}-${uniqueID}`, songFile, {
+        .upload(`song-${finalSongTitle}-${uniqueID}`, songFile, {
           cacheControl: '3600',
           upsert: false
         });
@@ -67,31 +87,121 @@ const UploadModal = () => {
         return toast.error('Failed to upload song');
       }
 
-      // Upload image
-      const {
-        data: imageData,
-        error: imageError
-      } = await supabaseClient
+     // Generate image path
+      const imagePath = `image-${sanitizeString(transliterateCyrillicToLatin(values.album))}`;
+
+      // List all images
+      const { data: images, error: listError } = await supabaseClient
         .storage
         .from('images')
-        .upload(`image-${transliterateCyrillicToLatin(values.title)}-${uniqueID}`, imageFile, {
-          cacheControl: '3600',
-          upsert: false
-        });
+        .list();
 
-      if (imageError) {
+      if (listError) {
         setIsLoading(false);
-        return toast.error('Failed to upload image');
+        return toast.error('Failed to list images');
       }
 
-      // Insert song (test)
+      // Check if image with similar name already exists
+      const existingImage = images?.find((image) => image.name.startsWith(imagePath));
+
+      let imageData = null;
+
+      // If image doesn't exist, upload it
+      if (!existingImage) {
+        const { data, error: uploadError } = await supabaseClient
+          .storage
+          .from('images')
+          .upload(`${imagePath}-${uniqueID}`, imageFile, {
+            cacheControl: '3600',
+            upsert: false
+          });
+
+        if (uploadError) {
+          setIsLoading(false);
+          return toast.error('Failed to upload image');
+        }
+
+        imageData = data;
+      }
+
+      // Retrieve artist ID
+      const { data: artistData, error: artistError } =
+        await supabaseClient.from('artists').select('id').eq('name', values.author).single();
+
+      if(!artistData) {
+        // Inset artist
+        const { error: supabaseArtistError } =
+        await supabaseClient.from('artists').insert({
+          name: values.author,
+          image_path: `artists/${values.author}`
+        });
+
+        if (supabaseArtistError) {
+          setIsLoading(false);
+          return toast.error(supabaseArtistError.message);
+        }
+      }
+
+      let artistId = artistData?.id;
+      let albumId;
+
+      // Retrieve album ID
+      const { data: albumData, error: albumError } =
+        await supabaseClient.from('albums').select('id').eq('name', values.album).single();
+
+      if (!albumData || albumError) {
+        console.log("ALBUM DOESN'T EXIST");
+        if (!artistData) {
+          const { data: artistData, error: artistError } =
+            await supabaseClient.from('artists').select('id').eq('name', values.author).single();
+
+          if (artistError) {
+            setIsLoading(false);
+            console.log("GET ARTIST ERROR: ", artistError.message);
+            return toast.error(artistError.message);
+          }
+
+          artistId = artistData?.id;
+        }
+
+        // Insert album
+        const { error: supabaseAlbumError } =
+        await supabaseClient.from('albums').insert({
+          name: values.album,
+          album_type: values.album_type,
+          artist_id: artistId,
+          image_path: existingImage ? existingImage.name : imageData?.path,
+        });
+
+        const { data: albumData, error: albumError } =
+          await supabaseClient.from('albums').select('id').eq('name', values.album).single();
+
+        if (albumError) {
+          setIsLoading(false);
+          console.log("GET ALBUM ERROR: ", albumError.message);
+          return toast.error(albumError.message);
+        }
+
+        albumId = albumData?.id;
+
+        if (supabaseAlbumError) {
+          setIsLoading(false);
+          console.log("INSERT ALBUM ERROR: ", supabaseAlbumError.message);
+          return toast.error(supabaseAlbumError.message);
+        }
+      }
+
+      // Insert song
       const { error: supabaseError } =
         await supabaseClient.from('songs').insert({
           user_id: user.id,
           title: values.title,
           author: values.author,
-          image_path: imageData.path,
-          song_path: songData.path
+          artist_id: artistId,
+          album_id: albumData ? albumData.id : albumId,
+          image_path: existingImage ? existingImage.name : imageData?.path,
+          song_path: songData.path,
+          duration: songDuration
         });
 
       if (supabaseError) {
@@ -117,6 +227,14 @@ const UploadModal = () => {
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-y-4'>
         <Input id="title" disabled={isLoading} {...register('title', { required: true })} placeholder="Song title" />
         <Input id="author" disabled={isLoading} {...register('author', { required: true })} placeholder="Artist" />
+        <div>
+          <Input id="album" disabled={isLoading} {...register('album', { required: true })} placeholder="Album name" defaultValue=""/>
+          <p className='text-neutral-500 text-sm font-normal'>* Enter the exact album name from Spotify</p>
+        </div>
+        <div>
+          <Input id="album_type" disabled={isLoading} {...register('album_type', { required: false })} placeholder="Album type (Single if empty)" />
+          <p className='text-neutral-500 text-sm font-normal'>* Album, Single, or EP (in that exact naming)</p>
+        </div>
         <div>
           <div className='pb-1'>
             Select a song file

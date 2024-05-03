@@ -36,4 +36,26 @@
   .modal-close {
     @apply absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full text-neutral-400 hover:text-white focus:outline-none;
   }
+
+  /* Shuffle Icon */
+  .icon-container {
+    position: relative;
+  }
+
+  .icon-container.is-active::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: rgba(34 197 94 / 0.9);
+    border-radius: 50%;
+  }
+
+  .icon-container:hover.is-shuffled::after {
+    background-color: rgba(34 197 94 / 1);
+  }
+
 }

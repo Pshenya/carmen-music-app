@@ -7,7 +7,6 @@ import { getUrl } from "@/libs/helpers";
 import { createOrRetrieveCustomer } from "@/libs/supabaseAdmin";
 
 export async function POST(request: Request) {
-  console.log('SESSION POST', request);
   const { price, quantity = 1, metadata = {} } = await request.json();
 
   try {

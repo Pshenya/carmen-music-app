@@ -10,6 +10,7 @@ import Box from "./Box";
 import SidebarItem from "./SidebarItem";
 import Library from "./Library";
 import { twMerge } from "tailwind-merge";
+import ListItem from "./ListItem";
 
 interface SidebarProps {
   children: React.ReactNode;

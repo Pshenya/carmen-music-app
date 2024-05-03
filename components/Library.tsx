@@ -5,6 +5,7 @@ import { Song } from "@/types";
 import { AiOutlinePlus } from "react-icons/ai";
 import { TbPlaylist } from "react-icons/tb";
 import MediaItem from "./MediaItem";
+import ListItem from "./ListItem";
 
 interface LibraryProps {
   songs: Song[];
@@ -39,6 +40,7 @@ const Library: React.FC<LibraryProps> = ({ songs }) => {
         <AiOutlinePlus className="text-neutral-400 cursor-pointer hover:text-white transition" size={20} onClick={onClick} />
       </div>
       <div className="flex flex-col gap-y-2 mt-4 px-3">
+        <ListItem image="/images/liked_songs.jpg" name="Liked songs" href="liked" className="bg-transparent h-16 ml-2"/>
         {songs.map((song) => (
           <MediaItem key={song.id} data={song} onClick={(id: string) => onPlay(id)} />
         ))}
