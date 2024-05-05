@@ -4,6 +4,7 @@ const useKeydown = (key: string, action: () => void) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.code === key) {
+        event.preventDefault
         action();
       }
     };

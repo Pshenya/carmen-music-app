@@ -40,17 +40,17 @@ const PlayerControls: React.FC<PlaybackControlsProps> = ({ ...props }) => {
         />
       </div>
       <AiFillStepBackward
-        className="text-neutral-400 text-[22px] cursor-pointer hover:text-white transition"
+        className="text-neutral-400 text-[24px] cursor-pointer hover:text-white transition"
         onClick={onPlayPrevious}
       />
       <div
-        className="flex items-center justify-center h-9 w-9 rounded-full bg-green-500 p-1 cursor-pointer transition duration-100 transform hover:scale-105 active:scale-90"
+        className="flex items-center justify-center h-10 w-10 rounded-full bg-green-500 p-1 cursor-pointer transition duration-100 transform hover:scale-105 active:scale-90"
         onClick={onPlay}
       >
         <PlaybackIcon className={`text-black ${PlaybackIcon === BsPlayFill && 'ml-[2px]'}`} size={26}/>
       </div>
       <AiFillStepForward
-        className="text-neutral-400 text-[22px] cursor-pointer hover:text-white transition"
+        className="text-neutral-400 text-[24px] cursor-pointer hover:text-white transition"
         onClick={onPlayNext}
       />
       <div

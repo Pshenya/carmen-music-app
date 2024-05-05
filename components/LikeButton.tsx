@@ -22,7 +22,9 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
 
   const Icon = isLiked ? AiFillHeart : AiOutlineHeart;
 
-  const handleLike = async () => {
+  const handleLike = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+
     if (!user?.id) {
       return authModal.onOpen();
     }

@@ -1,7 +1,9 @@
 import { Song } from "@/types";
 import { useAuthModal, usePlayer, useSubscribeModal, useUser } from "."; // @hooks
+import { useState } from "react";
 
-const useOnPlay = (songs: Song[]) => {
+const useOnPlay = (songs?: Song[]) => {
+  if (!songs) songs = [];
   const player = usePlayer();
   const authModal = useAuthModal();
   const subscribeModal = useSubscribeModal();
@@ -18,12 +20,11 @@ const useOnPlay = (songs: Song[]) => {
     | Forbid playing songs if user is not subscribed
     |--------------------------------------------------
     */
-
     player.setId(id);
     player.setIds(songs.map((song) => song.id));
   }
 
-  return onPlay;
+  return { onPlay, player };
 }
 
 export default useOnPlay;

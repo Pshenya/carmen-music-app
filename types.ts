@@ -22,6 +22,7 @@ export interface Song {
   image_path: string;
   duration: number;
   streams: number;
+  from_album: string;
 }
 
 export interface Artist {
@@ -29,7 +30,7 @@ export interface Artist {
   name: string;
   bio?: string;
   image_path: string;
-  verified?: boolean;
+  verified: boolean;
 }
 
 export interface Album {

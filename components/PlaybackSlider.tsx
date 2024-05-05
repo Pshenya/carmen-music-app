@@ -23,7 +23,7 @@ const PlaybackSlider: React.FC<PlaybackSliderProps> = ({ value = 1, onChange }) 
       step={0.001}
       aria-label="Duration"
     >
-      <RadixSlider.Track className="bg-neutral-600 relative grow rounded-full h-[2px]">
+      <RadixSlider.Track className="bg-neutral-600 relative grow rounded-full h-[4px]">
         <RadixSlider.Range className="bg-green-500 absolute h-full rounded-full" />
       </RadixSlider.Track>
       <RadixSlider.Thumb className="hidden group-hover:block bg-white w-[10px] h-[10px] rounded-lg drop-shadow-md" aria-label="Duration" />

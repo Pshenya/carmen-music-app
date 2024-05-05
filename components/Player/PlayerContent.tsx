@@ -1,17 +1,19 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import useSound from "use-sound";
-import { useOnIncrementStream, usePlayer } from "@/hooks";
+import { useOnIncrementStream, usePlayer, useRightSidebar } from "@/hooks";
 import { Song } from "@/types";
 import MediaItem from "../MediaItem";
 import LikeButton from "../LikeButton";
-import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
+import { HiQueueList, HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
 import Slider from "../Slider";
 import PlaybackSlider from "../PlaybackSlider";
 import { formatAudioDuration, formatSeekDuration, shuffleArray } from "@/utils/utils";
 import PlayerControls from "./PlayerControls";
 import useKeydown from "@/hooks/useKeyDown";
+import { BiSolidPlaylist } from "react-icons/bi";
+import { LuMic2 } from "react-icons/lu";
 
 interface PlayerContentProps {
   song: Song;
@@ -28,6 +30,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl, isShuffled
   const [isPlaying, setIsPlaying] = useState(false);
   const [originalIds, setOriginalIds] = useState(player.ids);
   const [seek, setSeek] = useState(0);
+  const rightSidebar = useRightSidebar();
   const incrementStream = useOnIncrementStream();
 
   const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
@@ -127,6 +130,13 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl, isShuffled
     }
   }
 
+  const rightClick = () => {
+    if (rightSidebar.isOpen) {
+      return rightSidebar.onClose();
+    }
+    return rightSidebar.onOpen();
+  }
+
   useEffect(() => {
     sound?.play();
 
@@ -181,12 +191,16 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl, isShuffled
       </div>
 
       <div className="hidden md:flex w-full justify-end pr-2">
-        <div className="flex items-center gap-x-2 w-[120px]">
-
-          <VolumeIcon className="cursor-pointer" size={34} onClick={toggleMute}/>
+        <div className="flex items-center gap-x-2 w-[200px]">
+          <LuMic2
+            className="text-neutral-300 hover:text-white" size={30}
+          />
+          <BiSolidPlaylist className="text-neutral-300 hover:text-white" size={30} onClick={rightClick}/>
+          <VolumeIcon className="text-neutral-300 hover:text-white cursor-pointer" size={30} onClick={toggleMute}/>
           <Slider value={volume} onChange={(value) => setVolume(value)}/>
         </div>
       </div>
+
     </div>
   )
 }

@@ -17,7 +17,11 @@ const Library: React.FC<LibraryProps> = ({ songs }) => {
   const subscribeModal = useSubscribeModal();
   const { user, subscription } = useUser();
 
-  const onPlay = useOnPlay(songs);
+  const { onPlay } = useOnPlay(songs);
+
+  const handlePlay = (id: string) => {
+    return onPlay(id);
+  }
 
   const onClick = () => {
     if (!user) {
@@ -40,9 +44,11 @@ const Library: React.FC<LibraryProps> = ({ songs }) => {
         <AiOutlinePlus className="text-neutral-400 cursor-pointer hover:text-white transition" size={20} onClick={onClick} />
       </div>
       <div className="flex flex-col gap-y-2 mt-4 px-3">
-        <ListItem image="/images/liked_songs.jpg" name="Liked songs" href="liked" className="bg-transparent h-16 ml-2"/>
+        <ListItem image="/images/liked_songs.jpg" name="Liked songs" href="liked" className="bg-transparent h-16 ml-2 hover:bg-neutral-400/10"/>
         {songs.map((song) => (
-          <MediaItem key={song.id} data={song} onClick={(id: string) => onPlay(id)} />
+          <div key={song.id} onClick={() => handlePlay(song.id)} className="rounded-md hover:bg-neutral-400/10 transition">
+            <MediaItem data={song} />
+          </div>
         ))}
       </div>
     </div>

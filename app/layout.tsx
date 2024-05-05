@@ -11,6 +11,7 @@ import Player from "@/components/Player/Player";
 
 import "./globals.css";
 import { Figtree } from "next/font/google";
+import RightSidebarProvider from "@/providers/RightSidebarProvider";
 
 const font = Figtree({ subsets: ["latin"] });
 
@@ -37,9 +38,10 @@ export default async function RootLayout({ children }: Readonly<{children: React
         <SupabaseProvider>
           <UserProvider>
             <ModalProvider products={products} />
-            <Sidebar songs={userSongs}>
-              {children}
-            </Sidebar>
+              <Sidebar songs={userSongs}>
+                {children}
+              </Sidebar>
+            <RightSidebarProvider />
             <Player />
           </UserProvider>
         </SupabaseProvider>

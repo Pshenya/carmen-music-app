@@ -6,6 +6,7 @@ import DiscographyBlock from "@/components/DiscographyBlock";
 import Header from "@/components/Header";
 import LikeButton from "@/components/LikeButton";
 import MediaItem from "@/components/MediaItem";
+import SongList from "@/components/SongList";
 import { useGetArtistById, useOnPlay } from "@/hooks"
 import { useLoadArtistImage } from "@/hooks/useLoadImage";
 import { Album, Song } from "@/types";
@@ -22,11 +23,10 @@ interface ArtistPageContentProps {
 const ArtistPageContent: React.FC<ArtistPageContentProps> = ({ artistId, songs, albums }) => {
   const { artist } = useGetArtistById(artistId);
   const imageUrl = useLoadArtistImage(artist!);
-  const onPlay = useOnPlay(songs);
 
   return (
     <div className="min-h-screen" style={{
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url(${imageUrl || '/images/artist-placeholder.png'})`,
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url(${imageUrl || '/images/artist-placeholder.png'})`,
       backgroundSize: 'cover',
       backgroundPosition: 'top',
       backgroundRepeat: 'no-repeat'}}
@@ -57,21 +57,10 @@ const ArtistPageContent: React.FC<ArtistPageContentProps> = ({ artistId, songs, 
           </div>
         </div>
       </Header>
-      <div className="flex flex-col gap-y-2 w-full p-6 bg-transparent">
-        <p className="font-bold text-2xl px-2">Popular</p>
-        {songs.map((song, index) => (
-          <div key={song.id} className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center w-full md:px-7 rounded-md hover:bg-neutral-800/50">
-            <div className="flex items-center gap-1 md:gap-4">
-              <div>{index + 1}</div>
-              <MediaItem data={song} onClick={(id: string) => onPlay(id)}/>
-            </div>
-            <div className="hidden md:block text-right font-normal">{song.streams}</div>
-            <div className="flex justify-end gap-x-10">
-              <LikeButton songId={song.id} />
-              <div>{formatAudioDuration(song.duration)}</div>
-            </div>
-          </div>
-        ))}
+
+      <div className="pt-4">
+        <p className="font-bold text-2xl px-6 pb-2">Popular</p>
+        <SongList songs={songs} />
       </div>
 
       <DiscographyBlock artistId={artistId} />

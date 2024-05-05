@@ -5,6 +5,7 @@ import DiscographyBlock from "@/components/DiscographyBlock";
 import Header from "@/components/Header";
 import LikeButton from "@/components/LikeButton";
 import MediaItem from "@/components/MediaItem";
+import SongList from "@/components/SongList";
 import { useGetArtistById, useOnPlay } from "@/hooks";
 import { useLoadArtistImage, useLoadImage } from "@/hooks/useLoadImage";
 import { Album, Song } from "@/types";
@@ -27,7 +28,6 @@ const AlbumPageContent: React.FC<AlbumPageContentProps> = ({ albumId, album, son
   const router = useRouter();
   const { artist } = useGetArtistById(album?.artist_id!);
   const albumDuration = formatAudioDuration(songs.reduce((acc, song) => acc + song.duration, 0), true);
-  const onPlay = useOnPlay(songs);
   const imageUrl = useLoadImage(album!);
   const artistImageUrl = useLoadArtistImage(artist!);
 
@@ -53,7 +53,9 @@ const AlbumPageContent: React.FC<AlbumPageContentProps> = ({ albumId, album, son
           </div>
           <div className="flex flex-col gap-8 justify-end">
             <div>
-            <h1 className={`font-bold ${album?.name?.length! > 30 ? 'text-3xl md:text-5xl' : 'text-5xl md:text-8xl'}`}>
+            <h1
+              className={`font-bold ${album?.name?.length! > 20 ? 'text-3xl md:text-7xl' : 'text-5xl md:text-8xl'}`}
+            >
               {album?.name}
             </h1>
               <p className="flex gap-1">{album?.album_type} by
@@ -102,34 +104,7 @@ const AlbumPageContent: React.FC<AlbumPageContentProps> = ({ albumId, album, son
         </div>
       </Header>
 
-      <div className="flex flex-col gap-y-2 w-full p-6 bg-transparent">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center w-full md:px-7 text-neutral-400 border-b border-neutral-500 pb-2">
-          <div className="flex items-center gap-1 md:gap-4 text-sm">
-            <span>#</span>
-            <span className="p-1">Title</span>
-          </div>
-          <div className="hidden md:block text-right font-normal text-sm">Streams</div>
-          <div className="flex justify-end gap-x-10">
-            <span>
-              <IoMdTime />
-            </span>
-          </div>
-        </div>
-
-        {songs.map((song, index) => (
-          <div key={song.id} className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center w-full md:px-7 rounded-md hover:bg-neutral-800/50">
-            <div className="flex items-center gap-1 md:gap-4">
-              <div>{index + 1}</div>
-              <MediaItem data={song} onClick={(id: string) => onPlay(id)} hideImage/>
-            </div>
-            <div className="hidden md:block text-right font-normal">{song.streams}</div>
-            <div className="flex justify-end gap-x-10">
-              <LikeButton songId={song.id} />
-              <div>{formatAudioDuration(song.duration)}</div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <SongList songs={songs} showHeadings hideImage/>
 
       <DiscographyBlock artistId={album?.artist_id} albumId={albumId} headline="Other releases" />
     </div>
