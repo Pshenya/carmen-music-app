@@ -3,6 +3,7 @@ import Stripe from "stripe";
 
 export interface UserDetails {
   id: string;
+  username: string;
   first_name: string;
   last_name: string;
   full_name?: string;
@@ -31,6 +32,7 @@ export interface Artist {
   bio?: string;
   image_path: string;
   verified: boolean;
+  listeners: number;
 }
 
 export interface Album {
@@ -40,6 +42,19 @@ export interface Album {
   artist_id: string;
   image_path: string;
   release_date?: string;
+}
+
+export interface Playlist {
+  id: string;
+  user_id: string;
+  name: string;
+  description?: string;
+  image_path: string;
+  is_public: boolean;
+  created_at: string;
+  updated_at?: string;
+  artist_id?: string;
+  artistName?: string;
 }
 
 export interface Product {

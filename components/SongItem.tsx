@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Song } from "@/types";
 import PlayButton from "./PlayButton";
-import { useLoadImage } from "@/hooks/useLoadImage";
+import { useLoadImage } from "@/hooks";
 
 interface SongItemProps {
   data: Song;
@@ -15,11 +15,11 @@ const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
 
   return (
     <div
-      className="relative group flex flex-col items-center justify-center rounded-md overflow-hidden gap-x-4 cursor-pointer hover:bg-neutral-400/10 transition p-3"
+      className="relative group flex flex-col items-center justify-center rounded-md overflow-hidden gap-x-4 cursor-pointer hover:bg-neutral-400/15 transition p-3 md:w-56 w-44"
       onClick={() => onClick(data.id)}
     >
       <div className="relative aspect-square w-full h-full rounded-md overflow-hidden">
-        <Image className="object-cover" src={imagePath || '/images/liked_songs.jpg'} fill alt="Liked"/>
+        <Image className="object-cover" src={imagePath || '/images/song-placeholder.png'} fill alt="Liked"/>
       </div>
       <div className="flex flex-col items-start w-full pt-4 gap-y-1">
         <p className="font-semibold truncate w-full">

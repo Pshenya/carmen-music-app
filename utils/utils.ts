@@ -112,12 +112,12 @@ export function getAudioDuration(file: File): Promise<number> {
     });
 }
 
-export function formatAudioDuration(duration: number, format: boolean = false): string {
+export function formatAudioDuration(duration: number, format: boolean = false, showSeconds: boolean = true): string {
     const minutes = Math.floor(duration / 60);
     const seconds = Math.floor(duration % 60);
 
     if (format) {
-        return `${minutes} min. ${seconds ? seconds + 'sec.' : ''}`;
+        return `${minutes} min. ${showSeconds && seconds ? seconds + 'sec.' : ''}`;
     }
 
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
@@ -145,6 +145,17 @@ export function shuffleArray(array: any[]) {
     }
 
     return array;
+}
+
+export const formatListeners = (listeners: number) => {
+    switch (true) {
+        case listeners < 10000:
+        return listeners;
+        case listeners < 1000000:
+        return `${(listeners / 1000)}K`;
+        case listeners < 1000000000:
+        return `${(listeners / 1000000).toFixed(1)}M`;
+    }
 }
 
 

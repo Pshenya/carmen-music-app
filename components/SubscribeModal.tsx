@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { useSubscribeModal, useUser } from "@/hooks";
 import { Price, ProductWithPrice } from "@/types";
 import Modal from "./Modal";
-import Button from "./Button";
+import Button from "./ui/Button";
 
 interface SubscribeModalProps {
   products: ProductWithPrice[];
@@ -85,11 +85,11 @@ const SubscribeModal: React.FC<SubscribeModalProps> = ({ products }) => {
                 key={price.id}
                 onClick={() => handleCheckout(price)}
                 disabled={isLoading || price.id === priceIdLoading}
-                className="mb-4"
+                className="mb-10 gradient"
               >
                 {`Subscribe for ${formatPrice(price)} a ${price.interval}`}
               </Button>
-              <p className="text-center text-base">This is NOT a real subscription.<br/> You will NOT be charged.</p>
+              <p className="text-center text-sm">This is a dummy subscription.<br/> You will NOT be charged.</p>
             </>
           ))
         })}
@@ -107,10 +107,11 @@ const SubscribeModal: React.FC<SubscribeModalProps> = ({ products }) => {
 
   return (
     <Modal
-      title="Only for Premium users"
-      description="Enhance your music limits with Carmen Premium"
+      title="Carmen Premium"
+      description="Subsribe to remove all restrictions"
       isOpen={subscribeModal.isOpen}
       onChange={onChange}
+      className="subscribe-modal"
     >
         {content}
     </Modal>

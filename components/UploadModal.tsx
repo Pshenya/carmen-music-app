@@ -1,16 +1,16 @@
 "use client";
 
 import uniqid from 'uniqid';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import toast from 'react-hot-toast';
 import { useUser, useUploadModal } from '@/hooks';
 import Modal from './Modal'
-import Input from './Input';
-import Button from './Button';
-import { formatAudioDuration, getAudioDuration, sanitizeString, transliterateCyrillicToLatin } from '@/utils/utils';
+import Input from './ui/Input';
+import Button from './ui/Button';
+import { getAudioDuration, sanitizeString, transliterateCyrillicToLatin } from '@/utils/utils';
 
 const UploadModal = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,8 +37,6 @@ const UploadModal = () => {
       uploadModal.onClose();
     }
   }
-
-
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     try {
@@ -87,7 +85,7 @@ const UploadModal = () => {
         return toast.error('Failed to upload song');
       }
 
-     // Generate image path
+      // Generate image path
       const imagePath = `image-${sanitizeString(transliterateCyrillicToLatin(values.album))}`;
 
       // List all images
@@ -201,7 +199,8 @@ const UploadModal = () => {
           album_id: albumData ? albumData.id : albumId,
           image_path: existingImage ? existingImage.name : imageData?.path,
           song_path: songData.path,
-          duration: songDuration
+          duration: songDuration,
+          from_album: values.album,
         });
 
       if (supabaseError) {
@@ -215,25 +214,25 @@ const UploadModal = () => {
       reset();
       uploadModal.onClose();
 
-    } catch (error) {
-      toast.error('Oops, something went wrong!');
+    } catch (error: Error | any) {
+      toast.error('Error: ', error.message);
     } finally {
       setIsLoading(false);
     }
   }
 
   return (
-    <Modal title='Add a song' description='Upload an .mp3 file' isOpen={uploadModal.isOpen} onChange={onChange}>
+    <Modal title='Add a song' description='Upload an .mp3 file' isOpen={uploadModal.isOpen} onChange={onChange} className='md:w-[90vw] md:max-w-[450px]'>
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-y-4'>
         <Input id="title" disabled={isLoading} {...register('title', { required: true })} placeholder="Song title" />
         <Input id="author" disabled={isLoading} {...register('author', { required: true })} placeholder="Artist" />
         <div>
           <Input id="album" disabled={isLoading} {...register('album', { required: true })} placeholder="Album name" defaultValue=""/>
-          <p className='text-neutral-500 text-sm font-normal'>* Enter the exact album name from Spotify</p>
+          <p className='pl-2 pt-1 text-primary/90 text-sm font-normal'>* Enter the exact album name from Spotify</p>
         </div>
         <div>
           <Input id="album_type" disabled={isLoading} {...register('album_type', { required: false })} placeholder="Album type (Single if empty)" />
-          <p className='text-neutral-500 text-sm font-normal'>* Album, Single, or EP (in that exact naming)</p>
+          <p className='pl-2 pt-1 text-primary/90 text-sm font-normal'>* Album, Single, or EP (in that exact naming)</p>
         </div>
         <div>
           <div className='pb-1'>

@@ -6,7 +6,7 @@ const ToasterProvider = () => {
   return (
     <Toaster toastOptions={{
       style: {
-        borderRadius: "50px",
+        borderRadius: "10px",
         background: "#3370e2",
         color: "#fff",
       }

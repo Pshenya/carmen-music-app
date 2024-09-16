@@ -1,25 +1,22 @@
-import { Album, Artist } from "@/types";
-import AlbumItem from "./AlbumItem";
 import { useGetAlbumsByArtistId, useOnPlay } from "@/hooks";
+import { twMerge } from "tailwind-merge";
+import ScrollContainer from "./ScrollContainer";
 
 interface DiscographyBlockProps {
   artistId: string | undefined;
   albumId?: string;
   headline?: string;
+  className?: string;
 }
 
-const DiscographyBlock: React.FC<DiscographyBlockProps> = ({ artistId, albumId, headline }) => {
+const DiscographyBlock: React.FC<DiscographyBlockProps> = ({ artistId, albumId, headline, className }) => {
   const { albums } = useGetAlbumsByArtistId(artistId);
   const filteredAlbums = [...albums?.filter((album) => album.id.toString() !== albumId)];
 
   return (
-    <div className="flex flex-col gap-y-2 w-full p-6 bg-transparent">
-      {filteredAlbums.length !== 0 && <p className="font-bold text-2xl px-2">{headline ? headline : 'Discography'}</p>}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mt-4">
-        {filteredAlbums?.map((album) => (
-          <AlbumItem key={album.id} album={album} />
-        ))}
-      </div>
+    <div className={twMerge('flex flex-col gap-y-2 w-full p-6 bg-black bg-opacity-65 backdrop-blur mt-10', className)}>
+      {filteredAlbums.length !== 0 && <p className="font-bold text-2xl px-4">{headline ? headline : 'Discography'}</p>}
+        <ScrollContainer albums={filteredAlbums} section="albums"/>
     </div>
   )
 }

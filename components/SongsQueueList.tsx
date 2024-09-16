@@ -24,10 +24,6 @@ const SongsQueueList = () => {
 
   const [prevSongsQueueListLength, setPrevSongsQueueListLength] = useState(0);
 
-  console.log('currentSong', currentSong);
-  console.log('songsQueueList', songsQueueList);
-
-
   const handlePlay = (id: string) => {
     return onPlay(id);
   }
@@ -60,7 +56,7 @@ const SongsQueueList = () => {
               className='absolute w-full'
             >
               <div className='flex rounded-md hover:bg-neutral-400/10 transition'>
-                <MediaItem data={currentSong} activeId={player.activeId}/>
+                <MediaItem data={currentSong} activeId={player.activeId} truncate />
                 <div>
                   <Lottie
                     animationData={lottie_musicPlaying}

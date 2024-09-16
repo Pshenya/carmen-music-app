@@ -18,6 +18,7 @@ const useGetSongsByAlbumId = (id?: string) => {
         .from("songs")
         .select("*")
         .eq("album_id", id)
+        .order("created_at", { ascending: true })
 
       if (error) {
         setIsLoading(false);

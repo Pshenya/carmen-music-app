@@ -4,7 +4,7 @@ import qs from "query-string"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDebounce } from "@/hooks";
-import Input from "./Input";
+import Input from "./ui/Input";
 
 const SearchInput = () => {
   const router = useRouter();
@@ -29,6 +29,7 @@ const SearchInput = () => {
       placeholder="What do you want to play?"
       value={value}
       onChange={(e) => setValue(e.target.value)}
+      className="text-white bg-neutral-800/80"
     />
   )
 }

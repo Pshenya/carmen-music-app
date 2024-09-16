@@ -1,7 +1,8 @@
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { Album, Artist, Song } from "@/types";
+import { Album, Artist, Playlist, Song, UserDetails } from "@/types";
+import { useEffect, useState } from "react";
 
-const useLoadImage = (data: Song | Album) => {
+const useLoadImage = (data: Song | Album | Artist | Playlist) => {
   const supabaseClient = useSupabaseClient();
 
   if (!data) {
@@ -14,20 +15,17 @@ const useLoadImage = (data: Song | Album) => {
   return imageData.publicUrl;
 }
 
-const useLoadArtistImage = (artist: Artist) => {
+export default useLoadImage;
+
+export const useLoadUserAvatar = (data: UserDetails) => {
   const supabaseClient = useSupabaseClient();
 
-  if (!artist) {
+  if (!data || !data.avatar_url) {
     return null;
   }
 
   const { data: imageData } = supabaseClient
-    .storage.from('images').getPublicUrl(artist.image_path);
+    .storage.from('images').getPublicUrl(data.avatar_url);
 
   return imageData.publicUrl;
 }
-
-export {
-  useLoadImage,
-  useLoadArtistImage
-};

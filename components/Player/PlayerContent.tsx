@@ -5,7 +5,7 @@ import useSound from "use-sound";
 import { useOnIncrementStream, usePlayer, useRightSidebar } from "@/hooks";
 import { Song } from "@/types";
 import MediaItem from "../MediaItem";
-import LikeButton from "../LikeButton";
+import LikeButton from "../ui/LikeButton";
 import { HiQueueList, HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
 import Slider from "../Slider";
 import PlaybackSlider from "../PlaybackSlider";
@@ -166,7 +166,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl, isShuffled
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 h-full">
       <div className="flex w-full justify-start">
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-4 z-10">
           <MediaItem data={song}/>
           <LikeButton songId={song.id}/>
         </div>
@@ -183,7 +183,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl, isShuffled
           onShuffle={onShuffle}
           onRepeat={onRepeat}
         />
-        <div className="flex items-center gap-x-2 w-[700px]">
+        <div className="hidden md:flex items-center gap-x-2 w-[700px]">
           <span className="text-neutral-400 text-xs">{formatSeekDuration(seek, song.duration)}</span>
           <PlaybackSlider value={seek} onChange={(value) => { setSeek(value); handleSeek(value) }}/>
           <span className="text-neutral-400 text-xs">{formatAudioDuration(song.duration)}</span>

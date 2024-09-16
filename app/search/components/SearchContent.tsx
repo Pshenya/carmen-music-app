@@ -1,9 +1,6 @@
 "use client";
 
-import LikeButton from "@/components/LikeButton";
-import MediaItem from "@/components/MediaItem";
 import SongList from "@/components/SongList";
-import { useOnPlay } from "@/hooks";
 import { Song } from "@/types";
 
 interface SearchContentProps {
@@ -14,14 +11,14 @@ const SearchContent: React.FC<SearchContentProps> = ({ songs }) => {
 
   if (songs.length === 0) {
     return (
-      <div className="flex flex-col gap-y-2 w-full px-6 text-neutral-400">
+      <div className="nigga flex flex-col gap-y-2 w-full px-6 text-neutral-400 h-screen bg-black bg-opacity-65 backdrop-blur">
         No songs found
       </div>
     )
   }
 
   return (
-    <SongList songs={songs} showHeadings streamsOrAlbum="album"/>
+    <SongList songs={songs} showHeadings streamsOrAlbum="album" className="h-full"/>
   )
 }
 

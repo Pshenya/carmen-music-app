@@ -20,9 +20,9 @@ const PlayerControls: React.FC<PlaybackControlsProps> = ({ ...props }) => {
   return (
     <>
       {/* Mobile only playback */}
-      <div className="flex md:hidden col-auto w-full justify-end items-center">
+      <div className="flex md:hidden col-auto w-full justify-end items-center mt-4">
       <div
-        className="h-10 w-10 flex items-center justify-center rounded-full bg-white p-1 cursor-pointer"
+        className="h-10 w-10 flex items-center justify-center rounded-full bg-primary p-1 cursor-pointer"
         onClick={onPlay}
       >
         <PlaybackIcon className="text-black" size={30}/>
@@ -36,7 +36,7 @@ const PlayerControls: React.FC<PlaybackControlsProps> = ({ ...props }) => {
         onClick={onShuffle}
       >
         <FaShuffle
-          className={`${isShuffled ? 'text-green-500/90 hover:text-green-500' : 'text-neutral-400 hover:text-white'} cursor-pointer transition`}
+          className={`${isShuffled ? 'text-primary/90 hover:text-primary' : 'text-neutral-400 hover:text-white'} cursor-pointer transition`}
         />
       </div>
       <AiFillStepBackward
@@ -44,7 +44,7 @@ const PlayerControls: React.FC<PlaybackControlsProps> = ({ ...props }) => {
         onClick={onPlayPrevious}
       />
       <div
-        className="flex items-center justify-center h-10 w-10 rounded-full bg-green-500 p-1 cursor-pointer transition duration-100 transform hover:scale-105 active:scale-90"
+        className="flex items-center justify-center h-10 w-10 rounded-full bg-primary p-1 cursor-pointer transition duration-100 transform hover:scale-105 active:scale-90"
         onClick={onPlay}
       >
         <PlaybackIcon className={`text-black ${PlaybackIcon === BsPlayFill && 'ml-[2px]'}`} size={26}/>
@@ -58,7 +58,7 @@ const PlayerControls: React.FC<PlaybackControlsProps> = ({ ...props }) => {
         onClick={onRepeat}
       >
         <FaRepeat
-          className={`${isRepeating ? 'text-green-500/90 hover:text-green-500' : 'text-neutral-400 hover:text-white'} cursor-pointer transition`}
+          className={`${isRepeating ? 'text-primary/90 hover:text-primary' : 'text-neutral-400 hover:text-white'} cursor-pointer transition`}
         />
       </div>
     </div>

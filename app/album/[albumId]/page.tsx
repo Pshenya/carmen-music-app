@@ -8,7 +8,7 @@ const AlbumPage = ({ params }: { params: {albumId: string} }) => {
   const { songs } = useGetSongsByAlbumId(params.albumId);
 
   return (
-    <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
+    <div className="rounded-lg h-full w-full overflow-hidden overflow-y-auto">
       <AlbumPageContent albumId={params.albumId} album={album} songs={songs} />
     </div>
   )

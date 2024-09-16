@@ -3,20 +3,22 @@
 import { useOnPlay } from '@/hooks'
 import { Song } from '@/types'
 import MediaItem from './MediaItem'
-import LikeButton from './LikeButton'
+import LikeButton from './ui/LikeButton'
 import { formatAudioDuration } from '@/utils/utils'
 import { IoMdTime } from 'react-icons/io'
 import Lottie from 'lottie-react';
 import lottie_musicPlaying from '@/public/assets/animations/lottie_musicPlaying.json'
+import { twMerge } from 'tailwind-merge';
 
 interface SongListProps {
   songs: Song[];
+  className?: string;
   showHeadings?: boolean;
   hideImage?: boolean;
   streamsOrAlbum?: 'streams' | 'album';
 }
 
-const SongList: React.FC<SongListProps> = ({ songs, showHeadings, hideImage, streamsOrAlbum = 'album' }) => {
+const SongList: React.FC<SongListProps> = ({ songs, className, showHeadings, hideImage, streamsOrAlbum = 'album' }) => {
   const { onPlay, player } = useOnPlay(songs);
 
   const handleOnPlay = (id: string) => {
@@ -28,7 +30,7 @@ const SongList: React.FC<SongListProps> = ({ songs, showHeadings, hideImage, str
   }
 
   return (
-    <div className="flex flex-col gap-y-2 w-full p-6 pt-0 bg-transparent">
+    <div className={twMerge('flex flex-col gap-y-2 w-full p-6 pt-0 bg-black bg-opacity-65 backdrop-blur', className)}>
       {showHeadings && (
         <div className="grid grid-cols-2 md:grid-cols-3 items-center w-full md:px-7 text-neutral-400 border-b border-neutral-500 pb-2">
           <div className="flex items-center gap-1 md:gap-4 text-sm">
@@ -45,7 +47,6 @@ const SongList: React.FC<SongListProps> = ({ songs, showHeadings, hideImage, str
       )}
 
       {songs.map((song, index) => {
-
         return (
         <div
           key={song.id}
@@ -67,13 +68,13 @@ const SongList: React.FC<SongListProps> = ({ songs, showHeadings, hideImage, str
               ) : (
               <div>{index + 1}</div>
             )}
-            <MediaItem data={song} activeId={player.activeId} hideImage={hideImage}/>
+            <MediaItem data={song} activeId={player.activeId} hideImage={hideImage} truncate/>
           </div>
           <div className="hidden md:block text-right text-neutral-400 font-normal">
             {streamsOrAlbum === 'streams' ? song.streams : song.from_album}
           </div>
           <div className="flex justify-end gap-x-10 text-neutral-400">
-            <LikeButton songId={song.id} />
+            <LikeButton songId={song.id} className='hidden'/>
             <div>{formatAudioDuration(song.duration)}</div>
           </div>
         </div>

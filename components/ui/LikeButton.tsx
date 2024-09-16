@@ -6,12 +6,14 @@ import { useEffect, useState } from "react";
 import { useUser, useAuthModal } from "@/hooks";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import toast from "react-hot-toast";
+import { twMerge } from "tailwind-merge";
 
 interface LikeButtonProps {
   songId: string;
+  className?: string;
 }
 
-const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
+const LikeButton: React.FC<LikeButtonProps> = ({ songId, className }) => {
   const router = useRouter();
   const { supabaseClient } = useSessionContext();
 
@@ -80,8 +82,8 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
 
 
   return (
-    <button className="hover:opacity-75 transition" onClick={handleLike}>
-      <Icon color={isLiked ? "#22c55e" : "#fff"} size={25} />
+    <button className={twMerge('group-hover:block hover:opacity-75 transition', className)} onClick={handleLike}>
+      <Icon color={isLiked ? "#FF5D73" : "#fff"} size={25} />
     </button>
   )
 }
