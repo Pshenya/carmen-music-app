@@ -30,7 +30,7 @@ const LikedItem: React.FC<LikedItemProps> = ({ image, width, height, name, descr
         className={twMerge('relative group flex items-center rounded-md overflow-hidden gap-x-3 bg-neutral-500/20 hover:bg-neutral-400/20 transition pr-4 mr-1', className)}
         onClick={onClick}
     >
-      <div className={`${height || width ? `min-h-[${height}px] min-w-[${width}px]` : 'min-h-[52px] md:min-h-[64px] min-w-[52px] md:min-w-[64px]'} relative`}>
+      <div className={`${height || width ? `min-h-[${height}px] min-w-[${width}px]` : 'min-h-[58px] md:min-h-[64px] min-w-[58px] md:min-w-[64px]'} relative`}>
         <Image className="object-cover" fill src={image} alt="Liked"/>
       </div>
       <div className="flex flex-col">
@@ -39,9 +39,6 @@ const LikedItem: React.FC<LikedItemProps> = ({ image, width, height, name, descr
           {pinned && <TbPinnedFilled className="text-lg text-primary rotate-45 -ml-[3px]"/>}
           <p className="text-neutral-400 truncate text-left">{description}</p>
         </div>
-      </div>
-      <div className="absolute transition opacity-0 rounded-full flex items-center justify-center bg-primary p-4 drop-shadow-md right-5 group-hover:opacity-100 hover:scale-110">
-        <FaPlay className="text-black"/>
       </div>
     </button>
   )

@@ -12,9 +12,9 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ onUploadClick }) => {
   return (
     <RadixDropdown.Root>
       <RadixDropdown.Trigger className="focus:outline-none">
-        <AiOutlinePlus className="text-neutral-400 cursor-pointer hover:text-white transition" size={20} />
+        <AiOutlinePlus className="text-white md:text-neutral-400 cursor-pointer hover:text-white transition size-6 md:size-5 mr-2 md:mr-0" />
       </RadixDropdown.Trigger>
-      <RadixDropdown.Content className="dropdown-content flex flex-col p-2 gap-3 absolute -left-3 top-2">
+      <RadixDropdown.Content className="dropdown-content-mobile md:dropdown-content-desktop">
         <RadixDropdown.Item id="add_song" className="dropdown-item gap-2" onClick={onUploadClick}>
           <TbMusicPlus className="text-xl text-primary"/>
           <span>Add a song</span>

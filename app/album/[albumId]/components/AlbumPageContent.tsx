@@ -4,7 +4,7 @@ import Button from "@/components/ui/Button";
 import DiscographyBlock from "@/components/DiscographyBlock";
 import Header from "@/components/Header";
 import SongList from "@/components/SongList";
-import { useGetArtistById, useLoadImage } from "@/hooks";
+import { useGetArtistById, useLoadImage, usePlayer } from "@/hooks";
 import { Album, Song } from "@/types";
 import { formatAudioDuration } from "@/utils/utils";
 import Image from "next/image";
@@ -22,6 +22,7 @@ interface AlbumPageContentProps {
 
 const AlbumPageContent: React.FC<AlbumPageContentProps> = ({ albumId, album, songs}) => {
   const router = useRouter();
+  const player = usePlayer();
   const { artist } = useGetArtistById(album?.artist_id!);
   const albumDuration = formatAudioDuration(songs.reduce((acc, song) => acc + song.duration, 0), true);
   const imageUrl = useLoadImage(album!);
@@ -31,7 +32,7 @@ const AlbumPageContent: React.FC<AlbumPageContentProps> = ({ albumId, album, son
 
 
   return (
-    <div className="min-h-screen" style={{
+    <div className={`min-h-screen ${player.activeId ? 'mb-[154px] md:mb-[90px]' : 'mb-16 md:mb-0'}`} style={{
       backgroundImage: `linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .9)), url(${imageUrl || '/images/album-placeholder.png'})`,
       backgroundSize: 'cover',
       backgroundPosition: 'top',

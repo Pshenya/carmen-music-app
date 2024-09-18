@@ -49,7 +49,7 @@ const PageContent: React.FC<PageContentProps> = ({ songs, artists, albums, playl
     */
     <div className="flex flex-col gap-6">
       <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 mt-4 px-6">
-        <LikedItem image="/images/liked-songs.png" name="Liked songs" href="liked"/>
+        <LikedItem image="/images/liked-songs.png" name="Liked songs" href="liked" className="hover:bg-red-400/10"/>
         {mixedArray.map((item) => (
           <ListItem key={`${item.id}-${item.name}`} data={item} />
         ))}

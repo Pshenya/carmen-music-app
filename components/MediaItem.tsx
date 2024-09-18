@@ -9,10 +9,11 @@ interface MediaItemProps {
   data: Song;
   activeId?: string;
   hideImage?: boolean;
+  artistPageList?: boolean
   truncate?: boolean;
 }
 
-const MediaItem: React.FC<MediaItemProps> = ({ data, activeId, hideImage, truncate }) => {
+const MediaItem: React.FC<MediaItemProps> = ({ data, activeId, hideImage, artistPageList = false, truncate }) => {
   const router = useRouter();
   const imageUrl = useLoadImage(data);
 
@@ -20,7 +21,7 @@ const MediaItem: React.FC<MediaItemProps> = ({ data, activeId, hideImage, trunca
     <div
       className="flex items-center gap-x-3 md:w-full p-2 rounded-md"
     >
-      <div className={`${hideImage && 'hidden'} relative rounded-md min-h-[48px] min-w-[48px] overflow-hidden`}>
+      <div className={`${hideImage && 'hidden'} relative rounded-md min-h-[58px] md:min-h-[48px] min-w-[58px] md:min-w-[48px] overflow-hidden`}>
         <Image src={imageUrl || '/images/song-placeholder.png'} className="object-cover" fill alt="Media"/>
       </div>
       <div className="flex flex-col overflow-hidden">
@@ -39,7 +40,7 @@ const MediaItem: React.FC<MediaItemProps> = ({ data, activeId, hideImage, trunca
             router.push(`/artist/${data.artist_id}`)
           }}
         >
-          {data.author}
+          {artistPageList ? data.streams : data.author}
         </p>
       </div>
     </div>

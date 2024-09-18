@@ -28,6 +28,15 @@
     background-clip: text;
   }
 
+  .gradient-text-blue {
+    background: #ee9ca7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .gradient {
     background: #fffbd5;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #fffbd5, #ff6b7f);  /* Chrome 10-25, Safari 5.1-6 */
@@ -113,17 +122,20 @@
   }
 
   .subscribe-modal p {
-    @apply text-white ;
+    @apply text-white;
   }
 
   /* Dropdown Menu */
-  .dropdown-content {
-    @apply min-w-[200px] bg-neutral-800/80 rounded-md shadow-custom animate-slide-up-and-fade transform-gpu opacity-100 shadow-black backdrop-filter backdrop-blur-xl;
+  .dropdown-content-desktop {
+    @apply min-w-[200px] bg-neutral-800/80 rounded-md shadow-custom animate-slide-up-and-fade transform-gpu opacity-100 shadow-black backdrop-filter backdrop-blur-xl flex flex-col p-2 gap-3 absolute -left-3 top-2;
+  }
 
+  .dropdown-content-mobile {
+    @apply w-full bg-neutral-800/80 rounded-md shadow-custom animate-slide-up-and-fade transform-gpu opacity-100 shadow-black backdrop-filter backdrop-blur-xl flex flex-col p-4 gap-3;
   }
 
   .dropdown-item {
-    @apply text-sm leading-none text-white rounded-sm flex items-center relative p-2 select-none outline-none cursor-pointer hover:bg-neutral-700;
+    @apply md:text-sm leading-none text-white rounded-sm flex items-center relative p-2 select-none outline-none cursor-pointer hover:bg-neutral-700;
   }
 
   /* Shuffle Icon */
@@ -139,12 +151,12 @@
     transform: translateX(-50%);
     width: 4px;
     height: 4px;
-    background-color: rgba(34 197 94 / 0.9);
+    background-color: rgba(255 93 115 / 0.9);
     border-radius: 50%;
   }
 
   .icon-container:hover.is-shuffled::after {
-    background-color: rgba(34 197 94 / 1);
+    background-color: rgba(255 93 115 / 0.91);
   }
 
 }

@@ -10,16 +10,17 @@ import AlbumItem from './AlbumItem';
 import SongList from './SongList';
 import MediaItem from './MediaItem';
 import MediaListItem from './MediaListItem';
+import { twMerge } from 'tailwind-merge';
 
 interface ScrollContainerProps {
   songs?: Song[];
-  artists?: Artist[];
   playlists?: Playlist[];
   albums?: Album[];
   section: 'songs' | 'artists' | 'albums' | 'charts' | 'for you' | 'song list';
+  className?: string;
 }
 
-const ScrollContainer: React.FC<ScrollContainerProps> = ({ songs, artists, playlists, albums, section}) => {
+const ScrollContainer: React.FC<ScrollContainerProps> = ({ songs, playlists, albums, section, className}) => {
   const scrollContainer = useRef<HTMLDivElement>(null);
   const { onPlay } = useOnPlay(songs);
   const player = usePlayer();
@@ -38,7 +39,7 @@ const ScrollContainer: React.FC<ScrollContainerProps> = ({ songs, artists, playl
 
 
   return (
-    <div className="flex items-center mt-1 overflow-hidden px-3">
+    <div className={twMerge("flex items-center mt-1 overflow-hidden px-3", className)}>
       <div className="absolute top-0 right-3 pt-1 hidden md:flex gap-x-1 items-center">
         <button
             className="group flex items-center justify-center p-1 rounded-full bg-transparent border border-neutral-400 hover:border-white transition"

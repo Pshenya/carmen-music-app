@@ -37,18 +37,18 @@ const Banner: React.FC<BannerProps> = ({ artists, className }) => {
         <div className="flex justify-between">
           <h2 className='text-sm md:text-base font-bold mb-2 opacity-80'>Artist of the day</h2>
         </div>
-        <h1 className='absolute top-[60%] left-[22%] text-4xl md:text-6xl font-semibold mb-4 text-white group-hover:scale-105 group-hover:bg-primary transition-all duration-500 '>{weeknd?.name}</h1>
+        <h1 className='absolute top-[60%] left-[22%] text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold mb-4 text-white group-hover:scale-105 group-hover:bg-primary transition-all duration-500 '>{weeknd?.name}</h1>
       </div>
     </div>
     ) : (
-      <div className={twMerge(`${subscription?.status === "active" ? 'hidden' : 'flex'} w-full h-64 md:h-96 rounded-md primary-gradient items-center justify-center opacity-90 px-7`, className)}>
+      <div className={twMerge(`${subscription?.status === "active" ? 'hidden' : 'flex'} w-full md:max-w-[300px] h-64 md:h-96 rounded-md primary-gradient items-center justify-center opacity-90 px-7`, className)}>
         <div className='text-center'>
-          <h2 className='text-4xl font-bold mb-2'>Upgrade to <span className="gradient-text">Premium</span></h2>
-          <p className='text-xl'>Enjoy unlimited access to exclusive features</p>
+          <h2 className='text-2xl md:text-4xl font-bold mb-2'>Upgrade to <br /><span className="gradient-text">Premium</span></h2>
+          <p className='text-base md:text-xl'>Enjoy unlimited access to exclusive features</p>
           <GlowCapture>
             <Glow color='gradient'>
               <Button
-                className="w-[200px] text-black bg-white border-none mt-5 glow:opacity-100 glow:blur-2 glow:gradient glow:spread-2 glow:radius-5"
+                className="w-24 md:w-[200px] text-sm p-2 md:p-3 text-black bg-white border-none mt-5 glow:opacity-100 glow:blur-2 glow:gradient glow:spread-2 glow:radius-5"
                 onClick={onSubscibe}
               >
                 Upgrade

@@ -8,7 +8,7 @@ const ArtistPage = async ({ params }: { params: {artistId: string} }) => {
 
 
   return (
-    <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
+    <div className="bg-neutral-900 h-full w-full overflow-hidden overflow-y-auto">
       <ArtistPageContent artistId={params.artistId} songs={songs} albums={albums}/>
     </div>
   )

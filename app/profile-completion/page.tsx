@@ -56,16 +56,18 @@ const ProfileCompletionPage = () => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-neutral-900/80 z-50">
-      <div className="rounded-lg w-full max-w-md overflow-hidden overflow-y-auto bg-black backdrop-filter backdrop-blur-md p-6 shadow-lg z-50">
-        <h2 className="text-3xl text-center font-bold text-primary">Almost there!</h2>
-        <p className='text-center mb-6'>Now let&apos;s create a unique <span className='gradient-text'>username</span> for you</p>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div className='mb-6'>
-            <Input type="text" {...register("username", { required: true })} placeholder='Username' className='mb-1'/>
-            {errors.username && <span className="text-red-500 text-xs">This field is required</span>}
-          </div>
-          <Button type="submit" className='text-white' disabled={isLoading}>Complete Profile</Button>
-        </form>
+      <div className="rounded-lg w-full h-full md:h-auto max-w-md overflow-hidden overflow-y-auto bg-black backdrop-filter backdrop-blur-md p-6 shadow-lg z-50">
+        <div>
+          <h2 className="text-3xl text-center font-bold text-primary">Almost there!</h2>
+          <p className='text-center mb-6'>Now let&apos;s create a unique <span className='gradient-text'>username</span> for you</p>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div className='mb-6'>
+              <Input type="text" {...register("username", { required: true })} placeholder='Username' className='mb-1'/>
+              {errors.username && <span className="text-red-500 text-xs">This field is required</span>}
+            </div>
+            <Button type="submit" className='text-white' disabled={isLoading}>Complete Profile</Button>
+          </form>
+        </div>
       </div>
     </div>
   );

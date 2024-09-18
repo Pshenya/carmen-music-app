@@ -231,7 +231,7 @@ const UploadModal = () => {
           <p className='pl-2 pt-1 text-primary/90 text-sm font-normal'>* Enter the exact album name from Spotify</p>
         </div>
         <div>
-          <Input id="album_type" disabled={isLoading} {...register('album_type', { required: false })} placeholder="Album type (Single if empty)" />
+          <Input id="album_type" disabled={isLoading} {...register('album_type', { required: false })} placeholder="Album type (Single if empty)" defaultValue="Single" />
           <p className='pl-2 pt-1 text-primary/90 text-sm font-normal'>* Album, Single, or EP (in that exact naming)</p>
         </div>
         <div>
@@ -247,7 +247,7 @@ const UploadModal = () => {
           <Input id="image" type="file" disabled={isLoading} accept="image/*" {...register('image', { required: true })} />
         </div>
         <Button type="submit" disabled={isLoading}>
-          Create
+          Upload
         </Button>
       </form>
     </Modal>

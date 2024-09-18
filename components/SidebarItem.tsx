@@ -6,7 +6,7 @@ interface SidebarItemProps {
   icon: IconType,
   label: string,
   active?: boolean,
-  href: string,
+  href: string
 }
 
 const SidebarItem: React.FC<SidebarItemProps> = ({ icon: Icon, label, active, href }) => {

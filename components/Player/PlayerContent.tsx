@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useSound from "use-sound";
 import { useOnIncrementStream, usePlayer, useRightSidebar } from "@/hooks";
 import { Song } from "@/types";

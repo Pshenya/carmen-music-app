@@ -8,6 +8,7 @@ import { useSubscribeModal, useUser } from "@/hooks";
 import { Price, ProductWithPrice } from "@/types";
 import Modal from "./Modal";
 import Button from "./ui/Button";
+import { Glow, GlowCapture } from "@codaworks/react-glow";
 
 interface SubscribeModalProps {
   products: ProductWithPrice[];
@@ -81,15 +82,23 @@ const SubscribeModal: React.FC<SubscribeModalProps> = ({ products }) => {
 
           return product.prices.map((price) => (
             <>
-              <Button
-                key={price.id}
-                onClick={() => handleCheckout(price)}
-                disabled={isLoading || price.id === priceIdLoading}
-                className="mb-10 gradient"
-              >
-                {`Subscribe for ${formatPrice(price)} a ${price.interval}`}
-              </Button>
-              <p className="text-center text-sm">This is a dummy subscription.<br/> You will NOT be charged.</p>
+              <GlowCapture>
+                <Glow color="gradient">
+                  <Button
+                    key={price.id}
+                    onClick={() => handleCheckout(price)}
+                    disabled={isLoading || price.id === priceIdLoading}
+                    className="mb-10 gradient"
+                  >
+                    {`Subscribe for ${formatPrice(price)} a ${price.interval}`}
+                  </Button>
+                  <p className="text-center">
+                    This is a <span className="text-primary font-bold">DUMMY</span> subscription.<br/>
+                    You will <span className="text-primary font-bold">NOT</span> be charged. <br/>
+                    Try it for free 😇
+                  </p>
+                </Glow>
+              </GlowCapture>
             </>
           ))
         })}
@@ -108,12 +117,12 @@ const SubscribeModal: React.FC<SubscribeModalProps> = ({ products }) => {
   return (
     <Modal
       title="Carmen Premium"
-      description="Subsribe to remove all restrictions"
+      description="You can only stream music for 30 seconds. Subsribe to remove all the restrictions"
       isOpen={subscribeModal.isOpen}
       onChange={onChange}
       className="subscribe-modal"
     >
-        {content}
+      {content}
     </Modal>
   )
 }

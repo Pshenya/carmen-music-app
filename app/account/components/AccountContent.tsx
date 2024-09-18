@@ -55,13 +55,17 @@ const AccountContent = () => {
     <div className="mb-7 px-6 bg-black bg-opacity-65 backdrop-blur h-full">
       {!subscription && (
         <div className="flex flex-col gap-y-4">
-          <p>No active plan.,</p>
-          <Button
-            className="w-[300px]"
-            onClick={subscribeModal.onOpen}
-          >
-            Subscribe
-          </Button>
+          <p>You are not a premium member.</p>
+          <GlowCapture>
+            <Glow color='gradient'>
+              <Button
+                className="w-[300px] gradient"
+                onClick={subscribeModal.onOpen}
+              >
+              Subscribe
+            </Button>
+            </Glow>
+          </GlowCapture>
         </div>
       )}
       {subscription && (

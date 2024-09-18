@@ -22,7 +22,7 @@ const PlaylistItem: React.FC<PlaylistItemProps> = ({ data: playlist, user }) => 
         router.push(`/playlist/${playlist.id}`)
       }}
     >
-      <div className="relative rounded-md min-h-[48px] min-w-[48px] overflow-hidden">
+      <div className="relative rounded-md min-h-[58px] md:min-h-[48px] min-w-[58px] md:min-w-[48px] overflow-hidden">
         <Image src={imageUrl || '/images/song-placeholder.png'} className="object-cover" fill alt="Media"/>
       </div>
       <div className="flex flex-col gap-y-1 overflow-hidden">

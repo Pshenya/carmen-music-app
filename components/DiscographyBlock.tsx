@@ -11,12 +11,12 @@ interface DiscographyBlockProps {
 
 const DiscographyBlock: React.FC<DiscographyBlockProps> = ({ artistId, albumId, headline, className }) => {
   const { albums } = useGetAlbumsByArtistId(artistId);
-  const filteredAlbums = [...albums?.filter((album) => album.id.toString() !== albumId)];
+  const filteredAlbums = [...albums?.filter((album) => album.id.toString() !== albumId).reverse()];
 
   return (
     <div className={twMerge('flex flex-col gap-y-2 w-full p-6 bg-black bg-opacity-65 backdrop-blur mt-10', className)}>
       {filteredAlbums.length !== 0 && <p className="font-bold text-2xl px-4">{headline ? headline : 'Discography'}</p>}
-        <ScrollContainer albums={filteredAlbums} section="albums"/>
+        <ScrollContainer albums={filteredAlbums} section="albums" className="p-0"/>
     </div>
   )
 }

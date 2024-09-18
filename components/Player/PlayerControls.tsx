@@ -20,7 +20,7 @@ const PlayerControls: React.FC<PlaybackControlsProps> = ({ ...props }) => {
   return (
     <>
       {/* Mobile only playback */}
-      <div className="flex md:hidden col-auto w-full justify-end items-center mt-4">
+      <div className="flex md:hidden col-auto w-full justify-end items-center mt-5 md:mt-4">
       <div
         className="h-10 w-10 flex items-center justify-center rounded-full bg-primary p-1 cursor-pointer"
         onClick={onPlay}

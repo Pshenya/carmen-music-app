@@ -6,7 +6,7 @@ import Button from "@/components/ui/Button";
 import DiscographyBlock from "@/components/DiscographyBlock";
 import Header from "@/components/Header";
 import SongList from "@/components/SongList";
-import { useGetArtistById, useLoadImage } from "@/hooks"
+import { useGetArtistById, useLoadImage, usePlayer } from "@/hooks"
 import { Album, Song } from "@/types";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa";
@@ -20,9 +20,10 @@ interface ArtistPageContentProps {
 const ArtistPageContent: React.FC<ArtistPageContentProps> = ({ artistId, songs, albums }) => {
   const { artist } = useGetArtistById(artistId);
   const imageUrl = useLoadImage(artist!);
+  const player = usePlayer();
 
   return (
-    <div className="min-h-screen" style={{
+    <div className={`min-h-screen ${player.activeId ? 'mb-[154px] md:mb-[90px]' : 'mb-16 md:mb-0'}`} style={{
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url(${imageUrl || '/images/artist-placeholder.png'})`,
       backgroundSize: 'cover',
       backgroundPosition: 'top',
@@ -55,9 +56,9 @@ const ArtistPageContent: React.FC<ArtistPageContentProps> = ({ artistId, songs, 
         </div>
       </Header>
 
-      <div className="pt-4">
+      <div className="pt-4 px-3">
         <p className="font-bold text-2xl px-6 pb-2">Popular</p>
-        <SongList songs={songs} className="bg-transparent backdrop-blur-0"/>
+        <SongList songs={songs} artistPageList className="bg-transparent backdrop-blur-0"/>
       </div>
 
       <DiscographyBlock artistId={artistId} className="bg-transparent backdrop-blur-0"/>

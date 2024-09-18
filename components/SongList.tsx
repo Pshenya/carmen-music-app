@@ -16,9 +16,10 @@ interface SongListProps {
   showHeadings?: boolean;
   hideImage?: boolean;
   streamsOrAlbum?: 'streams' | 'album';
+  artistPageList?: boolean
 }
 
-const SongList: React.FC<SongListProps> = ({ songs, className, showHeadings, hideImage, streamsOrAlbum = 'album' }) => {
+const SongList: React.FC<SongListProps> = ({ songs, className, showHeadings, hideImage, streamsOrAlbum = 'album', artistPageList }) => {
   const { onPlay, player } = useOnPlay(songs);
 
   const handleOnPlay = (id: string) => {
@@ -30,7 +31,7 @@ const SongList: React.FC<SongListProps> = ({ songs, className, showHeadings, hid
   }
 
   return (
-    <div className={twMerge('flex flex-col gap-y-2 w-full p-6 pt-0 bg-black bg-opacity-65 backdrop-blur', className)}>
+    <div className={twMerge('flex flex-col gap-y-2 w-full p-6 pt-3 bg-black bg-opacity-65 backdrop-blur', className)}>
       {showHeadings && (
         <div className="grid grid-cols-2 md:grid-cols-3 items-center w-full md:px-7 text-neutral-400 border-b border-neutral-500 pb-2">
           <div className="flex items-center gap-1 md:gap-4 text-sm">
@@ -45,7 +46,6 @@ const SongList: React.FC<SongListProps> = ({ songs, className, showHeadings, hid
           </div>
         </div>
       )}
-
       {songs.map((song, index) => {
         return (
         <div
@@ -68,7 +68,7 @@ const SongList: React.FC<SongListProps> = ({ songs, className, showHeadings, hid
               ) : (
               <div>{index + 1}</div>
             )}
-            <MediaItem data={song} activeId={player.activeId} hideImage={hideImage} truncate/>
+            <MediaItem data={song} activeId={player.activeId} hideImage={hideImage} artistPageList={artistPageList} truncate/>
           </div>
           <div className="hidden md:block text-right text-neutral-400 font-normal">
             {streamsOrAlbum === 'streams' ? song.streams : song.from_album}

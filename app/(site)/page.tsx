@@ -5,7 +5,6 @@ import getAlbums from "@/actions/getAlbums";
 import Header from "@/components/Header";
 import PageContent from "./components/PageContent";
 import Banner from "@/components/Banner";
-import TopArtistItem from "@/components/TopArtistItem";
 import NewReleaseItem from "@/components/NewReleaseItem";
 
 export const revalidate = 0;
@@ -19,10 +18,12 @@ export default async function Home() {
   return (
     <div className="w-full h-full overflow-hidden overflow-y-auto bg-black">
       <Header>
-        <div className="flex mb-2 gap-4">
-          <Banner artists={artists}/>
-          <Banner className="max-w-[350px]"/>
-          <div className='hidden md:flex flex-col gap-3 min-w-[300px] '>
+        <div className="flex mb-2">
+          <div className="flex flex-col sm:flex-row w-full gap-4">
+            <Banner artists={artists} />
+            <Banner />
+          </div>
+          <div className='hidden xl:flex flex-col gap-3 min-w-[300px] '>
             <h1 className="text-white font-semibold pb-2 pl-7">
               New releases
             </h1>

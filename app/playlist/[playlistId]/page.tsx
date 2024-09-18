@@ -15,11 +15,11 @@ interface PlaylistPageProps {
 const PlaylistPage = async ({ params, searchParams }: PlaylistPageProps) => {
   const playlist = await getPlaylistById(params.playlistId);
   const songs = await getPlaylistSongs(params.playlistId);
-  const recommendedSongs = await getRecommendedSongs();
+  // const recommendedSongs = await getRecommendedSongs();
 
   return (
-    <div className="rounded-lg h-full w-full">
-      <PlaylistPageContent playlist={playlist} songs={songs} recommendedSongs={recommendedSongs}/>
+    <div className="h-full w-full">
+      <PlaylistPageContent playlist={playlist} songs={songs} />
     </div>
   )
 }

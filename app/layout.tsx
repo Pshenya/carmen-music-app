@@ -12,6 +12,7 @@ import Player from "@/components/Player/Player";
 
 import "./globals.css";
 import { Figtree } from "next/font/google";
+import BottomBar from "@/components/BottomBar";
 
 const font = Figtree({ subsets: ["latin"] });
 
@@ -42,6 +43,7 @@ export default async function RootLayout({ children }: Readonly<{children: React
               <Sidebar songs={userSongs} playlists={userPlaylists}>
                 {children}
               </Sidebar>
+              <BottomBar />
             <RightSidebarProvider />
             <Player />
           </UserProvider>

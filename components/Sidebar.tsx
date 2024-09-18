@@ -38,7 +38,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, songs, playlists }) => {
 
   return (
     <div className={twMerge('flex h-full')}>
-      <div className="hidden md:flex flex-col gap-y-2 h-full w-[300px] border-r border-neutral-800 z-20">
+      <div className="hidden md:flex flex-col gap-y-2 h-full md:w-[300px] border-r border-neutral-800 z-20">
         <Box>
           <div className="flex flex-col gap-y-4 px-5 py-4 border-b border-neutral-800">
             {routes.map((item) => (
@@ -46,7 +46,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, songs, playlists }) => {
             ))}
           </div>
         </Box>
-        <Box className="overflow-y-auto h-full">
+        <Box className={`overflow-y-auto h-full ${player.activeId ? 'mb-[154px] md:mb-[90px]' : 'mb-16 md:mb-0'}`}>
           <Library songs={songs} playlists={playlists}/>
         </Box>
       </div>
