@@ -16,6 +16,10 @@ const AccountContent = () => {
   const subscribeModal = useSubscribeModal();
   const { user, subscription, isLoading, userDetails } = useUser();
 
+  console.log("USER: ", user);
+  console.log("SUB: ", subscription);
+  console.log('US: ', userDetails)
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -53,13 +57,14 @@ const AccountContent = () => {
 
   return (
     <div className="mb-7 px-6 bg-black bg-opacity-65 backdrop-blur h-full">
+      <h1>Username: <span className="font-bold">{userDetails?.username}</span></h1>
       {!subscription && (
         <div className="flex flex-col gap-y-4">
           <p>You are not a premium member.</p>
           <GlowCapture>
             <Glow color='gradient'>
               <Button
-                className="w-[300px] gradient"
+                className="w-[300px] bg-primary"
                 onClick={subscribeModal.onOpen}
               >
               Subscribe

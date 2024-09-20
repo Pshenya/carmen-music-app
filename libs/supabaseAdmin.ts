@@ -153,7 +153,10 @@ const manageSubscriptionStatusChange = async (subscriptionId: string, customerId
     .from("subscriptions")
     .upsert([subscriptionData]);
 
-  if (error) throw error;
+  if (error) {
+    console.log("SUB ERROR: ", error)
+    throw error;
+  };
 
   console.log(`Subscription record upserted: ${subscription.id} for user: ${uuid}`);
 

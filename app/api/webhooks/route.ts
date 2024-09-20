@@ -54,6 +54,7 @@ export async function POST(request: Request) {
             subscription.customer as string,
             event.type === 'customer.subscription.created'
           );
+          console.log("SUBSCR: ", subscription)
           break;
 
         case "checkout.session.completed":

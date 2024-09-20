@@ -14,7 +14,7 @@ const LibraryPage = async () => {
       <Header className="pb-2">
         <></>
       </Header>
-      <div className="bg-black bg-opacity-65 backdrop-blur">
+      <div className="bg-black bg-opacity-65 backdrop-blur h-full">
         <LibraryPageContent songs={userSongs} playlists={userPlaylists}/>
       </div>
     </div>

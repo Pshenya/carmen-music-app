@@ -169,6 +169,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl, isShuffled
         <div className="flex items-center gap-x-4 z-10">
           <MediaItem data={song}/>
           <LikeButton songId={song.id}/>
+          <BiSolidPlaylist className="block md:hidden text-neutral-300 hover:text-white" size={20} onClick={rightClick}/>
         </div>
       </div>
 
@@ -192,9 +193,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl, isShuffled
 
       <div className="hidden md:flex w-full justify-end pr-2">
         <div className="flex items-center gap-x-2 w-[200px]">
-          <LuMic2
-            className="text-neutral-300 hover:text-white" size={30}
-          />
+          {/* <LuMic2 className="text-neutral-300 hover:text-white" size={30}/> */}
           <BiSolidPlaylist className="text-neutral-300 hover:text-white" size={30} onClick={rightClick}/>
           <VolumeIcon className="text-neutral-300 hover:text-white cursor-pointer" size={30} onClick={toggleMute}/>
           <Slider value={volume} onChange={(value) => setVolume(value)}/>

@@ -55,7 +55,7 @@ const AlbumPageContent: React.FC<AlbumPageContentProps> = ({ albumId, album, son
           <div className="flex flex-col gap-8 justify-end">
             <div className="flex flex-col md:gap-5 items-center md:items-start mt-2">
               <h1
-                className={`font-bold ${album?.name?.length! > 20 ? 'text-3xl md:text-7xl' : 'text-5xl md:text-8xl'}`}
+                className={`font-bold ${album?.name?.length! > 20 ? 'text-3xl md:text-5xl lg:text-7xl' : 'text-5xl md:text-6xl lg:text8xl'}`}
               >
                 {album?.name}
               </h1>

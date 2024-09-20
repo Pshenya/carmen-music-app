@@ -18,7 +18,7 @@ const BottomBar:React.FC<BottomBarProps> = () => {
     {
       icon: HiHome,
       label: 'Home',
-      active: pathname !== '/search',
+      active: pathname === '/',
       href: '/',
     },
     {
@@ -34,6 +34,8 @@ const BottomBar:React.FC<BottomBarProps> = () => {
       href: '/library',
     }
   ], [pathname]);
+
+  console.log(routes);
 
   return (
     <div className='md:hidden w-full h-16 bg-neutral-900/95 backdrop-blur fixed bottom-0'>

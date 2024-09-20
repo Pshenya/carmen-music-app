@@ -244,7 +244,7 @@ const UploadModal = () => {
           <div className='pb-1'>
             Select a cover image
           </div>
-          <Input id="image" type="file" disabled={isLoading} accept="image/*" {...register('image', { required: true })} />
+          <Input id="image" type="file" disabled={isLoading} accept="image/*" {...register('image', { required: false })} />
         </div>
         <Button type="submit" disabled={isLoading}>
           Upload

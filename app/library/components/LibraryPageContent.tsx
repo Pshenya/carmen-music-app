@@ -56,7 +56,7 @@ const LibraryPageContent: React.FC<LibraryPageContentProps> = ({ songs, playlist
         </div>
         <DropdownMenu onUploadClick={onUploadClick}/>
       </div>
-      <div className="flex flex-col gap-y-2 mt-4 px-3 text-lg">
+      <div className="flex flex-col gap-y-2 mt-4 px-3 text-lg h-full">
         {user &&
           <LikedItem
             image="/images/liked-songs.png"

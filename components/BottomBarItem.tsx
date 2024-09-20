@@ -10,11 +10,12 @@ interface BottomBarItemProps {
 }
 
 const BottomBarItem:React.FC<BottomBarItemProps> = ({icon: Icon, label, active, href}) => {
+  console.log("ACT: ", active)
 
   return (
-    <Link href={href} className={twMerge('', active && '')}>
-      <Icon size={26} className="text-neutral-300 m-auto"/>
-      <p className="truncate w-full text-[10px] text-neutral-300 mt-0.5">{label}</p>
+    <Link href={href} className={twMerge('text-neutral-400', active && 'text-white')}>
+      <Icon size={26} className=" m-auto"/>
+      <p className="truncate w-full text-[10px] mt-0.5">{label}</p>
     </Link>
   )
 }
