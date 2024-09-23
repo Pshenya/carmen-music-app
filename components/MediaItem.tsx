@@ -16,6 +16,7 @@ interface MediaItemProps {
 const MediaItem: React.FC<MediaItemProps> = ({ data, activeId, hideImage, artistPageList = false, truncate }) => {
   const router = useRouter();
   const imageUrl = useLoadImage(data);
+  const formattedStreams = new Intl.NumberFormat('en-US').format(data.streams);
 
   return (
     <div
@@ -40,7 +41,7 @@ const MediaItem: React.FC<MediaItemProps> = ({ data, activeId, hideImage, artist
             router.push(`/artist/${data.artist_id}`)
           }}
         >
-          {artistPageList ? data.streams : data.author}
+          {artistPageList ? formattedStreams : data.author}
         </p>
       </div>
     </div>

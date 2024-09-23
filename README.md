@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+ <br />
+    <img src="https://github.com/your-username/carmen-music-app/blob/master/public/assets/images/carmen-music-logo.png" alt="Project banner">
+  <br />
 
-## Getting Started
+  <div>
+    <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=next.js&color=000000" alt="Next.js" />
+    <img src="https://img.shields.io/badge/-React-black?style=for-the-badge&logoColor=white&logo=react&color=61DAFB"
+    alt="react.js" />
+    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=4ba3e3"   alt="tailwindcss" />
+    <img src="https://img.shields.io/badge/-Stripe-black?style=for-the-badge&logoColor=white&logo=stripe&color=6772e5"
+    alt="stripe" />
+    <img src="https://img.shields.io/badge/-Typescript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
+    <img src="https://img.shields.io/badge/-Supabase-black?style=for-the-badge&logoColor=white&logo=supabase&color=3FCF8E" alt="supabase" />
+    <img src="https://img.shields.io/badge/-PostgreSQL-black?style=for-the-badge&logoColor=white&logo=postgresql&color=336791" alt="postgresql" />
+  </div>
 
-First, run the development server:
+  &nbsp;
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+  👉 Live Demo: <a href="#">Live Demo</a>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  ---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+  <h3 align="center">Music Streaming Application</h3>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+  <div align="center"> Carmen Music is a full-fledged music streaming platform. It offers users a seamless experience for exploring, uploading, and streaming songs, creating playlists, and more. Integrated with a premium subscription system, the app guarantees a smooth, responsive interface across all devices, powered by NextJS, React, Supabase, and Stripe.
+  </div>
+</div>
 
-## Learn More
+## <a name="features">🔋 Features</a>
 
-To learn more about Next.js, take a look at the following resources:
+⚡ **Comprehensive User Authentication**: Secure and robust user authentication powered by Supabase Auth Helpers, allowing for easy account creation and login
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+⚡ **Song Uploading**: Users can upload songs and cover images.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+⚡ **Premium Subscription**: Integrated with Stripe, users can subscribe to a premium plan, removing all limitations for premium users (which is 30 seconds of each song streaming for non premium user) and enhancing their experience.
 
-## Deploy on Vercel
+⚡ **Library**: Users have access to a comprehensive library that includes their liked songs, created or saved playlists, and all uploaded tracks.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+⚡ **Playlist Creation**: Create personalized playlists, add or remove songs, and modify cover images and descriptions to suit your style.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+⚡ **Liked Songs Playlist**: Users can like any song, which will automatically add it to their "Liked Songs" playlist for easy access.
+
+⚡ **Search Page**: Search functionality that allows users to easily find their favorite songs or artists.
+
+⚡ **Artist Pages**: Each artist has a dedicated page featuring their listeners' statistics, full discography, bio, and the playlists their songs are part of.
+
+⚡ **Stream Count**: Each song displays the total number of streams, giving users insights into the most popular tracks.
+
+⚡ **Songs Queue**: Users can manage a dynamic song queue for a continuous, uninterrupted listening experience.
+
+⚡ **Responsive Design**: Carmen Music features a fully responsive interface, ensuring a seamless user experience across desktop, tablet, and mobile devices.
+
+⚡ **Backend as a Service (BaaS) - Supabase**: Carmen Music leverages Supabase for a scalable and secure backend, providing database management (PostgreSQL), user authentication, and file storage services to power the app’s core functionality efficiently.
+
+And many more, including code architecture and reusability.
+
+
+

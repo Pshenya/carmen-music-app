@@ -85,11 +85,11 @@ const PlaylistPageContent: React.FC<PlaylistPageContentProps> = ({ playlist, son
               <div className="flex gap-3">
                 <div className="flex items-center gap-1 font-bold text-white cursor-pointer hover:underline" onClick={redirect}>
                   <Image
-                    src={userAvatarUrl || '/icons/spotify.png'}
+                    src={userAvatarUrl || '/icons/carmen.png'}
                     alt={userDetails?.username || 'Username'}
                     width={20}
                     height={20}
-                    className="rounded-full h-5"
+                    className="rounded-full h-5 filter-primary"
                     />
                   {userDetails?.username || userDetails?.full_name || 'User'}
                 </div>

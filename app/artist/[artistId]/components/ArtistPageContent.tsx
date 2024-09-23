@@ -23,6 +23,9 @@ const ArtistPageContent: React.FC<ArtistPageContentProps> = ({ artistId, songs, 
   const imageUrl = useLoadImage(artist!);
   const player = usePlayer();
 
+  const formattedListeners = new Intl.NumberFormat('en-US').format(artist ? artist.listeners : 0);
+
+
   return (
     <div className={`min-h-screen ${player.activeId ? 'mb-[154px] md:mb-[90px]' : 'mb-16 md:mb-0'}`} style={{
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url(${imageUrl || '/images/artist-placeholder.png'})`,
@@ -41,6 +44,9 @@ const ArtistPageContent: React.FC<ArtistPageContentProps> = ({ artistId, songs, 
           <h1 className="text-5xl md:text-8xl font-bold">
             {artist?.name}
           </h1>
+          <p className="md:text-lg ml-1">
+            {formattedListeners} monthly listeners
+          </p>
           <div className="flex items-center gap-x-4 mt-5">
             <div>
               <Button className="flex items-center px-6 py-2 gap-2 hover:scale-110 text-white" onClick={() => {}}>
