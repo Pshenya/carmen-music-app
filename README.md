@@ -76,7 +76,7 @@ And many more, including code architecture and reusability.
   <img src="https://github.com/Pshenya/carmen-music-app/blob/master/public/images/previews/upload_song.png" alt="Upload song">
   <br><br>
   <h3 align='center'>Mobile view 👇</h3>
-  <img src="https://github.com/Pshenya/lifelens-social-app/blob/master/public/assets/images/mobile.png" alt="Mobile preview">
+  <img src="https://github.com/Pshenya/carmen-music-app/blob/master/public/images/previews/mobile.png" alt="Mobile preview">
 </div>
 
 
