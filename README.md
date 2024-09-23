@@ -12,7 +12,6 @@
     alt="stripe" />
     <img src="https://img.shields.io/badge/-Typescript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
     <img src="https://img.shields.io/badge/-Supabase-black?style=for-the-badge&logoColor=white&logo=supabase&color=3FCF8E" alt="supabase" />
-    <img src="https://img.shields.io/badge/-PostgreSQL-black?style=for-the-badge&logoColor=white&logo=postgresql&color=336791" alt="postgresql" />
   </div>
 
   &nbsp;
@@ -55,5 +54,29 @@
 
 And many more, including code architecture and reusability.
 
+
+## <a name="screenshots">📷 Screenshots of the App</a >
+<div align='center'>
+  <h3 align='center'>Home Page 👇</h3>
+  <img src="https://github.com/Pshenya/carmen-music-app/blob/master/public/images/previews/homepage.png" alt="Home">
+  <br><br>
+  <h3 align='center'>Artist Page 👇</h3>
+  <img src="https://github.com/Pshenya/carmen-music-app/blob/master/public/images/previews/artist.png" alt="Artist">
+  <br><br>
+  <h3 align='center'>Liked songs Page 👇</h3>
+  <img src="https://github.com/Pshenya/carmen-music-app/blob/master/public/images/previews/liked_songs.png" alt="Liked">
+  <br><br>
+  <h3 align='center'>Playlist Page 👇</h3>
+  <img src="https://github.com/Pshenya/carmen-music-app/blob/master/public/images/previews/playlist.png" alt="Playlist">
+  <br><br>
+  <h3 align='center'>Player and Songs queue 👇</h3>
+  <img src="https://github.com/Pshenya/carmen-music-app/blob/master/public/images/previews/player.png" alt="Player">
+  <br><br>
+  <h3 align='center'>Upload song Modal 👇</h3>
+  <img src="https://github.com/Pshenya/carmen-music-app/blob/master/public/images/previews/upload_song.png" alt="Upload song">
+  <br><br>
+  <h3 align='center'>Mobile view 👇</h3>
+  <img src="https://github.com/Pshenya/lifelens-social-app/blob/master/public/assets/images/mobile.png" alt="Mobile preview">
+</div>
 
 
