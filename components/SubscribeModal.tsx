@@ -99,7 +99,9 @@ const SubscribeModal: React.FC<SubscribeModalProps> = ({ products }) => {
                   <p className="text-center">
                     This is a <span className="text-primary font-bold">DUMMY</span> subscription.<br/>
                     You will <span className="text-primary font-bold">NOT</span> be charged. <br/>
-                    Try it for free 😇
+                  </p>
+                  <p className="text-center mt-2">
+                    Use card <span className="text-primary">4242 4242 4242 4242</span> and try it for free 😇
                   </p>
                 </Glow>
               </GlowCapture>
