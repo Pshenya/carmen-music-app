@@ -125,6 +125,10 @@
     @apply text-white;
   }
 
+  .artist-modal{
+    @apply max-w-[800px] max-h-full md:max-h-[700px] overflow-scroll z-[99];
+  }
+
   /* Dropdown Menu */
   .dropdown-content-desktop {
     @apply min-w-[200px] bg-neutral-800/80 rounded-md shadow-custom animate-slide-up-and-fade transform-gpu opacity-100 shadow-black backdrop-filter backdrop-blur-xl flex flex-col p-2 gap-3 absolute -left-3 top-2;

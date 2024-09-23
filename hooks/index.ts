@@ -19,3 +19,5 @@ export { default as useGetSongs } from './useGetSongs';
 export { default as useGetSongsByQuery } from './useGetSongsByQuery';
 export { default as useGetPlaylistsByArtistId } from './useGetPlaylistsByArtistId';
 export { default as useGetArtistsPlaylists } from './useGetArtistsPlaylists';
+export { default as useGetArtists } from './useGetArtists';
+export { default as useArtistBioModal } from './useArtistBioModal';

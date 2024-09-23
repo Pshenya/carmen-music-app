@@ -10,7 +10,6 @@ interface BottomBarItemProps {
 }
 
 const BottomBarItem:React.FC<BottomBarItemProps> = ({icon: Icon, label, active, href}) => {
-  console.log("ACT: ", active)
 
   return (
     <Link href={href} className={twMerge('text-neutral-400', active && 'text-white')}>

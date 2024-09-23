@@ -31,7 +31,7 @@ const SongList: React.FC<SongListProps> = ({ songs, className, showHeadings, hid
   }
 
   return (
-    <div className={twMerge('flex flex-col gap-y-2 w-full p-6 pt-3 bg-black bg-opacity-65 backdrop-blur', className)}>
+    <div className={twMerge('flex flex-col gap-y-2 w-full h-full p-6 pt-3 bg-black bg-opacity-65 backdrop-blur', className)}>
       {showHeadings && (
         <div className="grid grid-cols-2 md:grid-cols-3 items-center w-full md:px-7 text-neutral-400 border-b border-neutral-500 pb-2">
           <div className="flex items-center gap-1 md:gap-4 text-sm">

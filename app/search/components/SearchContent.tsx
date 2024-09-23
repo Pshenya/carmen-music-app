@@ -18,9 +18,7 @@ const SearchContent: React.FC<SearchContentProps> = ({ songs }) => {
   }
 
   return (
-    <div>
-      <SongList songs={songs} showHeadings streamsOrAlbum="album" className="h-full"/>
-    </div>
+      <SongList songs={songs} showHeadings streamsOrAlbum="album"/>
   )
 }
 

@@ -10,6 +10,7 @@ import { useGetArtistById, useLoadImage, usePlayer } from "@/hooks"
 import { Album, Song } from "@/types";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa";
+import ArtistBio from "./ArtistBio";
 
 interface ArtistPageContentProps {
   artistId: string;
@@ -64,6 +65,8 @@ const ArtistPageContent: React.FC<ArtistPageContentProps> = ({ artistId, songs, 
       <DiscographyBlock artistId={artistId} className="bg-transparent backdrop-blur-0"/>
 
       <ArtistPlaylists artistId={artistId} />
+
+      <ArtistBio artist={artist!} artistImage={imageUrl!}/>
     </div>
   )
 }

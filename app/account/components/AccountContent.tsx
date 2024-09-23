@@ -16,10 +16,6 @@ const AccountContent = () => {
   const subscribeModal = useSubscribeModal();
   const { user, subscription, isLoading, userDetails } = useUser();
 
-  console.log("USER: ", user);
-  console.log("SUB: ", subscription);
-  console.log('US: ', userDetails)
-
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

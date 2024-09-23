@@ -35,8 +35,6 @@ const BottomBar:React.FC<BottomBarProps> = () => {
     }
   ], [pathname]);
 
-  console.log(routes);
-
   return (
     <div className='md:hidden w-full h-16 bg-neutral-900/95 backdrop-blur fixed bottom-0'>
       <div className='flex items-center justify-evenly gap-10 p-3'>
