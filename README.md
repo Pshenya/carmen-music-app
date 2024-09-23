@@ -1,6 +1,6 @@
 <div align="center">
  <br />
-    <img src="https://github.com/Pshenya/carmen-music-app/blob/master/public/images/carmen-music-logo.png" alt="Project banner">
+    <img src="https://github.com/Pshenya/carmen-music-app/blob/master/public/images/carmen-banner.png" alt="Project banner">
   <br />
 
   <div>
